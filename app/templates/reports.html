@@ -1,0 +1,39 @@
+{% extends 'base.html' %} {% block titulo %}Relatórios - Quantidade por
+Categoria{% endblock %} {% block css %}
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename='css/list.css') }}"
+/>
+{% endblock %} {% block content %}
+<div class="container-listagem">
+  <div class="header">
+    <h2>Relatório de Produtos por Categoria</h2>
+    <a href="{{ url_for('listar_produtos') }}" class="btn-add"
+      >Voltar para Listagem</a
+    >
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Categoria</th>
+        <th>Quantidade de Produtos</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for categoria, quantidade in counts %}
+      <tr>
+        <td>{{ categoria }}</td>
+        <td>{{ quantidade }} produto{% if quantidade != 1 %}s{% endif %}</td>
+      </tr>
+      {% else %}
+      <tr>
+        <td colspan="2" style="text-align: center">
+          Nenhuma categoria encontrada.
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

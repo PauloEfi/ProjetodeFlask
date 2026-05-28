@@ -1,58 +1,56 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %} {% block titulo %}Cadastro de Produtos - StockSys{%
+endblock %} {% block css %}
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename='css/register.css') }}"
+/>
+{% endblock %} {% block content %}
+<div class="container">
+  <h2>
+    {% if edit %}Editar Produto{% else %}Cadastrar Novo Produto{% endif %}
+  </h2>
+  <form method="POST" action="">
+    {{ form.hidden_tag() }}
 
-{% block titulo %}Cadastro de Produtos - StockSys{% endblock %}
-
-{% block css %}
-<link rel="stylesheet" href="{{ url_for('static', filename='css/register.css') }}">
-{% endblock %}
-
-{% block content %}
-    <div class="container">
-        <h2>Cadastrar Novo Produto</h2>
-        <form method="POST" action="">
-            {{ form.hidden_tag() }}
-            
-            <div class="form-group">
-                {{ form.name.label }}
-                {{ form.name(placeholder="Ex: Smartphone X") }}
-            </div>
-
-            <div class="form-row">
-                <div class="form-group">
-                    {{ form.price.label }}
-                    {{ form.price(placeholder="0.00") }}
-                </div>
-                <div class="form-group">
-                    {{ form.quantity.label }}
-                    {{ form.quantity(placeholder="0") }}
-                </div>
-            </div>
-
-            <div class="form-row">
-                <div class="form-group">
-                    {{ form.manufacturing_date.label }}
-                    {{ form.manufacturing_date(type="date") }}
-                </div>
-                <div class="form-group">
-                    {{ form.expiration_date.label }}
-                    {{ form.expiration_date(type="date") }}
-                </div>
-            </div>
-
-            <div class="form-group">
-                {{ form.manufacturer.label }}
-                {{ form.manufacturer(placeholder="Nome do Fabricante") }}
-            </div>
-
-            <div class="form-group">
-                {{ form.categoria_id.label }}
-                {{ form.categoria_id() }}
-            </div>
-
-            <div class="form-actions">
-                {{ form.submit(class="btn-submit") }}
-                <a href="{{ url_for('listar_produtos') }}" class="btn-back">Voltar para Listagem</a>
-            </div>
-        </form>
+    <div class="form-group">
+      {{ form.name.label }} {{ form.name(placeholder="Ex: Smartphone X") }}
     </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        {{ form.price.label }} {{ form.price(placeholder="0.00") }}
+      </div>
+      <div class="form-group">
+        {{ form.quantity.label }} {{ form.quantity(placeholder="0") }}
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group">
+        {{ form.manufacturing_date.label }} {{
+        form.manufacturing_date(type="date") }}
+      </div>
+      <div class="form-group">
+        {{ form.expiration_date.label }} {{ form.expiration_date(type="date") }}
+      </div>
+    </div>
+
+    <div class="form-group">
+      {{ form.manufacturer.label }} {{ form.manufacturer(placeholder="Nome do
+      Fabricante") }}
+    </div>
+
+    <div class="form-group">
+      {{ form.categoria_id.label }} {{ form.categoria_id() }}
+    </div>
+
+    <div class="form-actions">
+      {% if edit %} {{ form.submit(class="btn-submit", value='Atualizar') }} {%
+      else %} {{ form.submit(class="btn-submit") }} {% endif %}
+      <a href="{{ url_for('listar_produtos') }}" class="btn-back"
+        >Voltar para Listagem</a
+      >
+    </div>
+  </form>
+</div>
 {% endblock %}

@@ -18,3 +18,12 @@ class ControllerProduto():
     @classmethod
     def product_get_by_id(cls, id):
         return Produto.query.get_or_404(id)
+    
+    @classmethod
+    def delete_product(cls, product: Produto):
+        db.session.delete(product)
+        db.session.commit()
+
+    @classmethod
+    def update_product(cls, product: Produto):
+        db.session.commit()
