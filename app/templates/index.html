@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}Home - StockSys{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="welcome-container">
+    <h1>Bem-vindo ao Sistema de Gerenciamento de Produtos</h1>
+    <p>Utilize o menu lateral para navegar entre o cadastro, listagem e controle de estoque.</p>
+</div>
+
+<div class="dashboard-cards">
+    <div class="card-single">
+        <div>
+            <h2>Acessar</h2>
+            <span>Listagem Geral</span>
+        </div>
+        <div>
+            <a href="{{ url_for('listar_produtos') }}" class="card-btn">Ir ➔</a>
+        </div>
+    </div>
+    <div class="card-single">
+        <div>
+            <h2>Novo</h2>
+            <span>Cadastrar Produto</span>
+        </div>
+        <div>
+            <a href="{{ url_for('cadastrar_produto') }}" class="card-btn">Ir ➔</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Dashboard de Produtos{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/base.css') }}">
+    {% block css %}{% endblock %}
+</head>
+<body>
+
+    <div class="sidebar">
+        <div class="sidebar-brand">
+            <h2>StockSys</h2>
+        </div>
+        <ul class="sidebar-menu">
+            <li>
+                <a href="{{ url_for('index') }}" class="nav-link">
+                    <span>Dashboard</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ url_for('listar_produtos') }}" class="nav-link">
+                    <span>Produtos</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ url_for('cadastrar_produto') }}" class="nav-link">
+                    <span>Cadastrar Produto</span>
+                </a>
+            </li>
+            <li>
+                <a href="#" class="nav-link disabled">
+                    <span>Relatórios (Desafio)</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="main-content">
+        <header>
+            <div class="user-wrapper">
+                <span>Painel do Professor/Aluno</span>
+            </div>
+        </header>
+
+        <main>
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <div class="alert alert-{{ category }}">{{ message }}</div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+
+            {% block content %}{% endblock %}
+        </main>
+    </div>
+
+</body>
+</html>
